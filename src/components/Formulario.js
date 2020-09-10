@@ -53,7 +53,7 @@ const Error = styled.div`
   color: #ffffff;
 `;
 
-const Formulario = () => {
+const Formulario = ({ guardarResumen }) => {
   const [datos, guardarDatos] = useState({
     marca: "",
     anio: "",
@@ -83,6 +83,11 @@ const Formulario = () => {
     resultado -= (diferenciaAnios * 3 * resultado) / 100;
     resultado *= calcularDiferenciaMarca(marca);
     resultado *= parseFloat(calcularPlan(plan)).toFixed(2);
+
+    guardarResumen({
+      resultado,
+      datos,
+    });
   };
 
   return (
