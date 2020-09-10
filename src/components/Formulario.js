@@ -39,13 +39,25 @@ const Boton = styled.button`
   }
 `;
 
+const Error = styled.div`
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: #ff0000;
+  color: #ffffff;
+`;
+
 const Formulario = () => {
   const [datos, guardarDatos] = useState({
     marca: "",
     anio: "",
     plan: "",
   });
+  const [error, guardarError] = useState(false);
+
   const { marca, anio, plan } = datos;
+
   const obtenerDatosFormulario = (e) => {
     guardarDatos({
       ...datos,
@@ -53,8 +65,23 @@ const Formulario = () => {
     });
   };
 
+  const cotizarSeguro = (e) => {
+    e.preventDefault();
+    if (marca.trim() === "" || anio.trim() === "" || plan.trim() === "") {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
+    // Obtener diferencia de años
+    // Por cada año restar el 3%
+    // Americano: 15%, Asiatico: 5%, Europeo 30%
+    // Basico 20% / Completo 50%
+    // Total
+  };
+
   return (
-    <form>
+    <form onSubmit={cotizarSeguro}>
+      {error ? <Error>Todos los campos son obligatorios</Error> : null}
       <Campo>
         <Label>Marca</Label>
         <Select name="marca" value={marca} onChange={obtenerDatosFormulario}>
@@ -101,7 +128,7 @@ const Formulario = () => {
         />
         <RadioLabel htmlFor="completo">Completo</RadioLabel>
       </Campo>
-      <Boton type="button">Cotizar</Boton>
+      <Boton type="submit">Cotizar</Boton>
     </form>
   );
 };
