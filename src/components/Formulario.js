@@ -83,7 +83,7 @@ const Formulario = ({ guardarResumen }) => {
     resultado -= (diferenciaAnios * 3 * resultado) / 100;
     resultado *= calcularDiferenciaMarca(marca);
     resultado *= parseFloat(calcularPlan(plan)).toFixed(2);
-
+    console.log(resultado);
     guardarResumen({
       resultado,
       datos,

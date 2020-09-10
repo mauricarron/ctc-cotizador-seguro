@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import styled from "@emotion/styled";
 import Resumen from "./components/Resumen";
+import Resultado from "./components/Resultado";
 
 const Contenedor = styled.div`
   max-width: 600px;
@@ -15,14 +16,14 @@ const ContendorFormulario = styled.div`
 
 function App() {
   const [resumen, guardarResumen] = useState({
-    cotizacion: 0,
+    resultado: 0,
     datos: {
       marca: "",
       anio: "",
       plan: "",
     },
   });
-  const { datos } = resumen;
+  const { resultado, datos } = resumen;
 
   return (
     <Contenedor>
@@ -30,6 +31,7 @@ function App() {
       <ContendorFormulario>
         <Formulario guardarResumen={guardarResumen} />
         <Resumen datos={datos} />
+        <Resultado resultado={resultado} />
       </ContendorFormulario>
     </Contenedor>
   );
