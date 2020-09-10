@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -29,7 +30,7 @@ const Resultado = ({ resultado }) => {
     <Mensaje>Elije Marca, Año y tipo de Plan</Mensaje>
   ) : (
     <ResultadoCotizacion>
-      <TransitionGroup component="p" className="resultado">
+      <TransitionGroup component="span" className="resultado">
         <CSSTransition
           classNames="resultado"
           key={resultado}
@@ -40,6 +41,10 @@ const Resultado = ({ resultado }) => {
       </TransitionGroup>
     </ResultadoCotizacion>
   );
+};
+
+Resultado.propTypes = {
+  resultado: PropTypes.number.isRequired,
 };
 
 export default Resultado;

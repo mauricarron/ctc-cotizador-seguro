@@ -4,6 +4,7 @@ import Formulario from "./components/Formulario";
 import styled from "@emotion/styled";
 import Resumen from "./components/Resumen";
 import Resultado from "./components/Resultado";
+import Spinner from "./components/Spinner";
 
 const Contenedor = styled.div`
   max-width: 600px;
@@ -23,15 +24,20 @@ function App() {
       plan: "",
     },
   });
+  const [cargando, guardarCargando] = useState(false);
   const { resultado, datos } = resumen;
 
   return (
     <Contenedor>
       <Header titulo="Cotizador de Seguros" />
       <ContendorFormulario>
-        <Formulario guardarResumen={guardarResumen} />
+        <Formulario
+          guardarResumen={guardarResumen}
+          guardarCargando={guardarCargando}
+        />
+        {cargando ? <Spinner /> : null}
         <Resumen datos={datos} />
-        <Resultado resultado={resultado} />
+        {!cargando ? <Resultado resultado={Number(resultado)} /> : null}
       </ContendorFormulario>
     </Contenedor>
   );

@@ -12,6 +12,8 @@ Proyecto de aprendizaje realizado en el curso **Desarrollo FrontEnd con React**,
 
 - Profundiza en los elementos básicos de React
 - Styled Components
+- Librerías de Animación (React-Transition-Group, SpinKit)
+- PropTypes
 
 ## ✅ Tecnologías
 

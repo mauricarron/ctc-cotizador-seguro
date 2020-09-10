@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import {
   obtenerDiferenciaAnios,
@@ -53,7 +54,7 @@ const Error = styled.div`
   color: #ffffff;
 `;
 
-const Formulario = ({ guardarResumen }) => {
+const Formulario = ({ guardarResumen, guardarCargando }) => {
   const [datos, guardarDatos] = useState({
     marca: "",
     anio: "",
@@ -83,11 +84,16 @@ const Formulario = ({ guardarResumen }) => {
     resultado -= (diferenciaAnios * 3 * resultado) / 100;
     resultado *= calcularDiferenciaMarca(marca);
     resultado *= parseFloat(calcularPlan(plan)).toFixed(2);
-    console.log(resultado);
-    guardarResumen({
-      resultado,
-      datos,
-    });
+
+    guardarCargando(true);
+    setTimeout(() => {
+      guardarCargando(false);
+
+      guardarResumen({
+        resultado,
+        datos,
+      });
+    }, 1250);
   };
 
   return (
@@ -142,6 +148,11 @@ const Formulario = ({ guardarResumen }) => {
       <Boton type="submit">Cotizar</Boton>
     </form>
   );
+};
+
+Formulario.propTypes = {
+  guardarResumen: PropTypes.func.isRequired,
+  guardarCargando: PropTypes.func.isRequired,
 };
 
 export default Formulario;
