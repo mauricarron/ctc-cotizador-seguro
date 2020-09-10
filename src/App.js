@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Contenedor>
-      <Header titulo="Cotizador de Seguros" />;
+      <Header titulo="Cotizador de Seguros" />
       <ContendorFormulario>
         <Formulario guardarResumen={guardarResumen} />
         <Resumen datos={datos} />

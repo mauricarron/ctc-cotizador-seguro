@@ -26,3 +26,7 @@ export function calcularPlan(plan) {
   plan === "basico" ? (incremento = 1.2) : (incremento = 1.5);
   return incremento;
 }
+
+export function primerMayuscula(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
